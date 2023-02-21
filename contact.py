@@ -10,9 +10,9 @@ class Contact:
         self.title = title
         self.company = company
         self.address = address
-        self.home = home
-        self.mobile = mobile
-        self.work = work
+        self.homePhone = home
+        self.mobilePhone = mobile
+        self.workPhone = work
         self.fax = fax
         self.email1 = email1
         self.email2 = email2
@@ -25,5 +25,5 @@ class Contact:
         self.anniversaryMonth = anniversaryMonth
         self.anniversaryYear = anniversaryYear
         self.secondaryAddress = secondaryAddress
-        self.secondaryHome = secondaryHome
+        self.secondaryHomePhone = secondaryHome
         self.notes = notes
