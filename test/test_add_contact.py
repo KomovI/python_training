@@ -4,6 +4,8 @@ from model.contact import Contact
 
 def test_add_contact(app):
     app.session.login(username="admin", password="secret")
+    # In test_edit_contact for variable anniversaryMonth, set the month with a small first letter.
+    # In test_add_contact for variable anniversaryMonth, set the month with a capital first letter.
     app.contact.create(Contact(firstname="Test", middlename="Testerovich", lastname="Testerov", nickname="QA",
                                title="QA manager", company="Test Company", address="Test Address",
                                home="Test Home Telephone", mobile="Test Mobile Telephone",
