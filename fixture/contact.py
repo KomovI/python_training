@@ -94,7 +94,7 @@ class ContactHelper:
         # return to home page
         wd.find_element_by_link_text("home page").click()
 
-    def edit(self, contact):
+    def edit_first_contact(self, contact):
         wd = self.app.wd
         # init first contact modification
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
