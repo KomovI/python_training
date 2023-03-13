@@ -3,7 +3,6 @@ from model.contact import Contact
 
 
 def test_add_contact(app):
-    app.session.login(username="admin", password="secret")
     # In tests for modification of contacts for variable anniversaryMonth, set the month with a small first letter.
     # In tests for adding contacts for variable anniversaryMonth, set the month with a capital first letter.
     app.contact.create(Contact(firstname="Test", middlename="Testerovich", lastname="Testerov", nickname="QA",
@@ -15,4 +14,3 @@ def test_add_contact(app):
                                anniversaryDay="2", anniversaryMonth="January", anniversaryYear="2005",
                                secondaryAddress="Test Secondary Address", secondaryHome="Test Home",
                                notes="Test Notes"))
-    app.session.logout()
