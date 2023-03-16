@@ -11,7 +11,7 @@ class Application:
         options = Options()
         options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe'
         self.wd = webdriver.Firefox(executable_path=r'C:\Windows\System32\geckodriver.exe', options=options)
-        self.wd.implicitly_wait(30)
+        self.wd.implicitly_wait(15)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)

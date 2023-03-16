@@ -3,8 +3,10 @@ from model.contact import Contact
 
 
 def test_edit_first_contact(app):
-    # In tests for modification of contacts for variable anniversaryMonth, set the month with a small first letter.
-    # In tests for adding contacts for variable anniversaryMonth, set the month with a capital first letter.
+    # In method for modification of contacts for variable anniversaryMonth, set the month with a small first letter.
+    # In method for adding contacts for variable anniversaryMonth, set the month with a capital first letter.
+    if app.contact.count() == 0:
+        app.contact.create(Contact())
     app.contact.edit_first_contact(Contact(firstname="TestEdit", middlename="TesterovichEdit", lastname="TesterovEdit",
                                            nickname="QA EDIT", title="QA manager EDIT", company="Test Company EDIT",
                                            address="Test Address EDIT", home="Test Home Telephone EDIT",
