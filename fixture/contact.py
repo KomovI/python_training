@@ -1,7 +1,6 @@
 from model.contact import Contact
 import re
 
-
 class ContactHelper:
 
     def __init__(self, app):
@@ -113,11 +112,32 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contact_page()
         # select contact by index
-        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        self.select_contact_by_id(id)
         # init deletion
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # submit deletion
         wd.switch_to.alert.accept()
+        wd.find_element_by_link_text("home").click()
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+
+    def add_contact_to_group(self, contact_id, group_id):
+        wd = self.app.wd
+        self.open_contact_page()
+        wd.find_element_by_css_selector("option[value='']").click()
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_name("to_group").find_element_by_css_selector("option[value='%s']" % group_id).click()
+        wd.find_element_by_name("add").click()
+        wd.find_element_by_link_text("home").click()
+
+    def delete_contact_from_group(self, contact_id, group_id):
+        wd = self.app.wd
+        self.open_contact_page()
+        wd.find_element_by_css_selector("option[value='%s']" % group_id).click()
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_name("remove").click()
         wd.find_element_by_link_text("home").click()
 
     def count(self):
