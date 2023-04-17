@@ -40,8 +40,8 @@ class Contact:
         return "%s:%s:%s:%s:%s" % (self.id, self.firstname, self.lastname, self.anniversaryDay, self.birthdayDay)
 
     def __eq__(self, other):
-        return (self.id is None or other.id is None or self.id == other.id) and self.firstname == other.firstname and \
-            self.lastname == self.lastname
+        return (self.id is None or other.id is None or self.id == other.id) and \
+            self.firstname.strip() == other.firstname.strip() and self.lastname == self.lastname
 
     def id_or_max(self):
         if self.id:

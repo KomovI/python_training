@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 from model.contact import Contact
-from random import randrange
+import random
 
 
-def test_edit_first_contact(app):
+def test_edit_first_contact(app, db, check_ui):
     # In method for modification of contacts for variable anniversaryMonth, set the month with a small first letter.
     # In method for adding contacts for variable anniversaryMonth, set the month with a capital first letter.
     if app.contact.count() == 0:
         app.contact.create(Contact())
     old_contacts = app.contact.get_contact_list()
-    index = randrange(len(old_contacts))
+    old_contact = random.choice(old_contacts)
+    index = old_contacts.index(old_contact)
     contact = Contact(firstname="TestEdit", middlename="TesterovichEdit", lastname="TesterovEdit", nickname="QA EDIT",
                       title="QA manager EDIT", company="Test Company EDIT", address="Test Address EDIT",
                       home="Test Home Telephone EDIT", mobile="Test Mobile Telephone EDIT",
@@ -19,9 +20,12 @@ def test_edit_first_contact(app):
                       anniversaryMonth="november", anniversaryYear="2009",
                       secondaryAddress="Test Secondary Address EDIT", secondaryHome="Test Home EDIT",
                       notes="Test Notes EDIT")
-    contact.id = old_contacts[index].id
-    app.contact.edit_contact_by_index(index, contact)
+    contact.id = old_contact.id
+    app.contact.edit_contact_by_id(old_contact.id, contact)
     assert len(old_contacts) == app.contact.count()
-    new_contacts = app.contact.get_contact_list()
+    new_contacts = db.get_contact_list()
     old_contacts[index] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    if check_ui:
+        assert sorted(old_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
+                                                                     key=Contact.id_or_max)
