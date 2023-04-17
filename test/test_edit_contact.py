@@ -6,7 +6,7 @@ import random
 def test_edit_first_contact(app, db, check_ui):
     # In method for modification of contacts for variable anniversaryMonth, set the month with a small first letter.
     # In method for adding contacts for variable anniversaryMonth, set the month with a capital first letter.
-    if app.contact.count() == 0:
+    if len(db.get_contact_list()) == 0:
         app.contact.create(Contact())
     old_contacts = app.contact.get_contact_list()
     old_contact = random.choice(old_contacts)

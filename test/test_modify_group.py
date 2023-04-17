@@ -4,7 +4,7 @@ import random
 
 
 def test_modify_name(app, db, check_ui):
-    if app.group.count() == 0:
+    if len(db.get_group_list()) == 0:
         app.group.create(Group())
     old_groups = db.get_group_list()
     group = random.choice(old_groups)
