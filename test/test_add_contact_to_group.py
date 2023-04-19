@@ -1,10 +1,9 @@
 from model.group import Group
 from model.contact import Contact
-from fixture.orm import ORMfixture
 import random
 
 
-def test_contact_in_group(app, orm):
+def test_add_contact_to_group(app, orm):
     if len(orm.get_group_list()) == 0:
         app.group.create(Group(name="test"))
     if app.contact.count() == 0:
@@ -16,13 +15,7 @@ def test_contact_in_group(app, orm):
               (test_contact, test_group))
         app.contact.delete_contact_from_group(contact_id=test_contact.id, group_id=test_group.id)
         assert test_contact in orm.get_contacts_not_in_group(test_group)
-        app.contact.add_contact_to_group(contact_id=test_contact.id, group_id=test_group.id)
-        assert test_contact in orm.get_contacts_in_group(test_group)
-    else:
-        print("\n Контакта \n %s \n нет в группе \n %s \n сначала добавим контакт в группу" %
-              (test_contact, test_group))
-        app.contact.add_contact_to_group(contact_id=test_contact.id, group_id=test_group.id)
-        assert test_contact in orm.get_contacts_in_group(test_group)
-        app.contact.delete_contact_from_group(contact_id=test_contact.id, group_id=test_group.id)
-        assert test_contact in orm.get_contacts_not_in_group(test_group)
+    app.contact.add_contact_to_group(contact_id=test_contact.id, group_id=test_group.id)
+    assert test_contact in orm.get_contacts_in_group(test_group)
+
 
