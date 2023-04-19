@@ -8,7 +8,7 @@ def test_edit_first_contact(app, db, check_ui):
     # In method for adding contacts for variable anniversaryMonth, set the month with a capital first letter.
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact())
-    old_contacts = app.contact.get_contact_list()
+    old_contacts = db.get_contact_list()
     old_contact = random.choice(old_contacts)
     index = old_contacts.index(old_contact)
     contact = Contact(firstname="TestEdit", middlename="TesterovichEdit", lastname="TesterovEdit", nickname="QA EDIT",
