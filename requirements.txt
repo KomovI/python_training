@@ -1,0 +1,11 @@
+attrs==22.2.0
+colorama==0.4.6
+iniconfig==2.0.0
+jsonpickle==3.0.1
+packaging==23.0
+pluggy==1.0.0
+pony==0.7.16
+PyMySQL==1.0.3
+pytest==7.2.1
+selenium==3.141.0
+urllib3==1.26.14
